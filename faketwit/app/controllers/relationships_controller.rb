@@ -12,6 +12,13 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def destroy
+    @relationship = current_user.relationships.find(params[:id])
+    @relationship.destroy
+    flash[:notice] = 'No longer following.'
+    redirect_to request.referrer
+  end
+
   private
     # Never trust parameters from the internet, only allow the white list through.
     def relationship_params
