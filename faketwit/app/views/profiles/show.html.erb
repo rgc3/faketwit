@@ -1,6 +1,5 @@
 <div class="row">
-  <div class= "col-xs-3 panel panel-default">
-    <div class="panel-body">
+  <div class= "col-xs-3 card card-block">
       <div class="row">
           <%= image_tag(@user.avatar.url(:small)) %>
               <h3><%= @user.name %></h3>
@@ -34,28 +33,25 @@
             <%= link_to "Follow", relationships_path(:friend_id => @user), method: :post %>
           <% end %>
         <% end %>
-      </div>
     </div>
     <div class= "col-xs-1"></div>
 
-  <div class= "col-xs-7 panel panel-default">
+  <div class= "col-xs-7 card card-block">
       <% @user.tweets.each do |tweet| %>
-        <div class="panel-body">
           <%= image_tag(tweet.user.avatar.url(:thumb)) %>
         <strong><%= tweet.user.username %> </strong><small>tweeted <%= time_ago_in_words(tweet.created_at) %> ago</small>
         <br />
         <br />
         <%= tweet.message %>
-        </div>
         <div class="panel-body">
 
         <% if current_user.likes?(tweet) %>
           <%= link_to tweet_like_path(tweet), method: :delete do %>
-            <i class="glyphicon glyphicon-heart"></i>
+            <i class="fa fa-heart" aria-hidden="true"></i>
           <%end%>
          <% else %>
           <%= link_to tweet_like_path(tweet), method: :post do %>
-            <i class="glyphicon glyphicon-heart"></i>
+            <i class="fa fa-heart" aria-hidden="true"></i>
           <%end%>
         <% end %>
         <br />
